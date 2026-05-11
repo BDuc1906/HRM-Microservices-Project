@@ -1,0 +1,6 @@
+@HRM.Microservices.Gateway_HostAddress = http://localhost:5202
+
+GET {{HRM.Microservices.Gateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

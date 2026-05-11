@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  # SQL Server Microsoft cho nhóm N1
+  sql-server-n1:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql_hr_core
+    ports:
+      - "1433:1433" # Cổng mặc định
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=DucAnh@2026!
+    networks:
+      - hrm-network
+
+  # RabbitMQ để giao tiếp giữa các service
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_hrm
+    ports:
+      - "5672:5672"   # Cổng kết nối code
+      - "15672:15672" # Cổng quản lý (vào trình duyệt xem)
+    networks:
+      - hrm-network
+
+networks:
+  hrm-network:
+    driver: bridge
